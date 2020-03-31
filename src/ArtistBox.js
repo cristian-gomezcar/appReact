@@ -37,7 +37,7 @@ export default class ArtistBox extends Component{
   render(){
     const {imagen,nombre,hora,fecha,lugar,organizadores,likes,comments}=this.props.data
     return(
-
+      <TouchableOpacity>
         <View style={styles.artistBox}>
           <Image style={styles.image} source={{uri: imagen}}/>
 
@@ -68,6 +68,7 @@ export default class ArtistBox extends Component{
           </View>
 
         </View>
+        </TouchableOpacity>
       
     );
   }
