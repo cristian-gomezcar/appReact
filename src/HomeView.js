@@ -18,7 +18,8 @@ import {
   FlatList,
   Button,
   Alert,
-  color
+  color,
+  TouchableOpacity
 } from 'react-native';
 
 import {
@@ -29,6 +30,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Icon from 'react-native-vector-icons/Entypo';
+
 import ArtistBox from './ArtistBox'
 
 import {getEven} from './api-Eventos'
@@ -38,6 +40,7 @@ export default class HomeView  extends Component{
   state={
     eventos:[]
   }
+  
   componentDidMount(){
 
     getEven()
@@ -52,6 +55,12 @@ export default class HomeView  extends Component{
     return(
       
       <View style={styles.contenedor}>
+        <View style={{alignItems:'flex-end'}}>
+          <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+            <Icon name="menu" size={30} color="white"/> 
+          </TouchableOpacity>
+          </View>
+          
        <FlatList
        data={this.state.eventos}
        renderItem={({item})=><ArtistBox data={item}/>}

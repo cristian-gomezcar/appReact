@@ -18,7 +18,8 @@ import {
   FlatList,
   Button,
   Alert,
-  color
+  color,
+  TouchableOpacity
 } from 'react-native';
 
 import {
@@ -28,6 +29,8 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Icon from 'react-native-vector-icons/Entypo';
+import FAB from 'react-native-fab'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -36,13 +39,24 @@ import { createStackNavigator } from '@react-navigation/stack';
 export default class departamentos extends Component{
 
   render(){
-     //console.disableYellowBox = true;
     return(
       <ScrollView>
+                  <View style={{flexDirection:'row-reverse',justifyContent:'space-between',margin:7}}>
+            <View>
+            <TouchableOpacity  onPress={() => this.props.navigation.openDrawer()}>
+              <Icon name="menu" size={41} color="blue"/> 
+            </TouchableOpacity>
+
+            </View>
+              
+              <View >
+              <Image style={{width:40,height:40}} source = {require('./Img/1.jpg')} />
+              </View>
+          </View>
         <View style={styles.contenedor}>
           
           <View style={styles.listado}>
-            <Button  title="Alta Verapaz" onPress={() =>this.props.navigation.navigate('HomeView')} />
+            <Button  title="Alta Verapaz" onPress={() =>this.props.navigation.navigate('Eventos')} />
           </View>
           <View style={styles.listado}>
             <Button  title="Baja Verapaz" onPress={this.saludo} />
@@ -131,6 +145,11 @@ const styles= StyleSheet.create({
     flex: 1,
     marginTop:1.5,
     borderRadius:20
+  },
+  tit:{
+    color:"white",
+    fontWeight: 'bold',
+    fontSize:15,
   }
 })
   

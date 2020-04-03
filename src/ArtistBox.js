@@ -30,6 +30,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Icon from 'react-native-vector-icons/Entypo';
+
 export default class ArtistBox extends Component{  
 
   saludo=()=>{Alert.alert("Hola")}
@@ -42,29 +43,12 @@ export default class ArtistBox extends Component{
           <Image style={styles.image} source={{uri: imagen}}/>
 
           <View style={styles.info}>
-          <Text style={styles.name}>Nombre:{nombre}</Text>
-          <Text style={styles.name}>Organizadores :{organizadores}</Text>
-          <Text style={styles.name}>Fecha :{fecha}</Text>
-          <Text style={styles.name}>Hora  :{hora}</Text>
-          <Text style={styles.name}>Lugar :{lugar}</Text>
+          <Text style={styles.name}>Nombre:              {nombre}</Text>
+          <Text style={styles.name}>Organizadores:   {organizadores}</Text>
+          <Text style={styles.name}>Fecha:                  {fecha}</Text>
+          <Text style={styles.name}>Hora:                    {hora}</Text>
+          <Text style={styles.name}>Lugar:                  {lugar}</Text>
 
-          </View>
-          <View style={styles.row}>
-            <View style={styles.iconos}>
-              <Icon name="heart-outlined" size={30} color="#134379"/> 
-              <Text>{likes}</Text>
-            </View>
-
-            <View style={styles.iconos}>
-              <Icon name="chat" size={30} color="#134379"/> 
-              <Text>{comments}</Text>
-            </View>
-            <View>
-              
-              <TouchableOpacity style={styles.ver} onPress={this.saludo}>
-                <Text style={{color:'white', fontWeight: 'bold', fontSize:15,}}>ver</Text>
-              </TouchableOpacity>
-            </View>
           </View>
 
         </View>
@@ -87,30 +71,8 @@ const styles= StyleSheet.create({
   info:{
     flex:1,
     justifyContent:'center',
-    marginLeft:5,
-    alignItems:'center',
+    margin:13
   },
-  name:{
-    fontSize:10,
-    marginTop:5,
-    fontWeight: 'bold'
-  },
-  row:{
-    flexDirection:'column',
-    justifyContent:'space-between',
-    margin:5
-  },
-  iconos:{
-    flex:1,
-    alignItems:'center',
-  },
-  ver:{
-    justifyContent:'center',
-    alignItems:"center",
-    backgroundColor:'#134379',
-    borderRadius:5,
-    
-  }
 
 })
   

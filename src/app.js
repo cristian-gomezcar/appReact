@@ -1,44 +1,49 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image, Dimensions,AppRegistry} from 'react-native';
-
+import * as React from 'react';
+import { View, Text, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
 
-import departamentos from './departamentos'
 import HomeView from './HomeView'
-const Stack = createStackNavigator();
+import departamentos from './departamentos'
+import FbLogin from './Login/FbLogin'
 
-function App() {
+function CustomDrawerContent(props) {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="departamentos">
-        <Stack.Screen name="departamentoss" component={departamentos} options={{
-
-          title: 'Seleccione su departamento',
-          headerStyle: {
-            backgroundColor: '#000080',
-          },
-          headerTintColor: 'white',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}/>
-
-
-        <Stack.Screen name="HomeView" component={HomeView}options={{
-
-        title: 'Eventos Disponibles',
-        headerStyle: {
-          backgroundColor: '#000080',
-        },
-        headerTintColor: 'white',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-        }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+      <DrawerItem
+        label="Cerrar"
+        onPress={() => props.navigation.closeDrawer()}
+      />
+      <DrawerItem
+        label=" "
+        onPress={() => props.navigation.toggleDrawer()}
+      />
+    </DrawerContentScrollView>
   );
 }
 
-export default App;
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
+  return (
+    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
+    <Drawer.Screen name="FbLogin" component={FbLogin} />
+    <Drawer.Screen name="Departamentos" component={departamentos} />
+    <Drawer.Screen name="Eventos" component={HomeView} />
+    </Drawer.Navigator>
+  );
+}
+
+export default function App({ navigation }) {
+  return (
+    <NavigationContainer> 
+      <MyDrawer />
+    </NavigationContainer>
+  );
+}
